@@ -24,7 +24,8 @@
     "tests"
   ],
   "dependencies": {
-    "polymer": "^1.7.0"
+    "polymer": "^1.7.0",
+    "cat-animation": "the-catalin/cat-animation#^0.8.7"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.1.7",
