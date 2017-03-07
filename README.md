@@ -3,7 +3,7 @@
 -->
 # cat-transitions
 
-`cat-transitions` is a helper element that allows you to decorate Polymer elements.
+`cat-transitions` is a helper element that allows you to add transitions to Polymer elements.
 
 includes:
 `fade-in`
