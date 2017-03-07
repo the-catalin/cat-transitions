@@ -1,0 +1,50 @@
+<link rel="import" href="../../polymer/polymer.html">
+
+<link rel="import" href="../cat-transitions-behavior.html">
+
+<script>
+
+	Polymer({
+
+		is: 'scale-from-center',
+
+		behaviors: [CatBehaviors.CatTransitionsBehavior, CatBehaviors.CatAnimationRunnerBehavior],
+
+		properties: {
+			_defaults : {
+				value: {
+					function: 'ease',
+					duration: 1
+				}
+			},
+			_restrictions: {
+				value: {
+					function: ['ease', 'ease-in', 'ease-out', 'ease-in-out', 'linear'],
+					duration: 'number'					
+				}
+			}
+		},
+		
+		_customInit: function() {
+			
+			this.clearAnimation('tempAnimation');
+
+			var firstAnimation = this.addAnimation('tempAnimation', {
+			    name: 'cat-scale-animation',
+			    node: this._config.toNode,
+			    direction: 'center',
+			    function: this._config.function,
+			    duration: this._config.duration,
+			    reverse: false,
+			    done: function() {
+			    	this._config.done.call(this._config.self);
+			    }
+			});
+
+			this.play('tempAnimation');
+		}
+		
+
+	});
+
+</script>

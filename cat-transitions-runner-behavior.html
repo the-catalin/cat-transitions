@@ -1,0 +1,28 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<script>
+
+
+window.CatBehaviors = window.CatBehaviors || {};
+/** @polymerBehavior */
+CatBehaviors.CatTransitionsRunnerBehavior = {
+
+	addTransition: function(config) {
+		
+		var catTransition = document.createElement(config.name);
+		
+		if (catTransition.initConfig) {
+			catTransition.initConfig(config);
+			config.catTransition = catTransition;
+		} else {
+			console.warn('There is no transition with this name: "' + config.name + '"');
+		}			
+
+
+		config.self = this;
+	}
+	
+
+};
+
+</script>

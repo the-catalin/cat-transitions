@@ -1,0 +1,82 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<link rel="import" href="../cat-animation/cat-animation-runner-behavior.html">
+
+<script>
+
+
+window.CatBehaviors = window.CatBehaviors || {};
+/** @polymerBehavior */
+CatBehaviors.CatTransitionsBehavior = {
+
+	properties: {
+		_config: {
+			value: function() {
+			    return {};
+			}
+		}
+	},
+	
+	_extendWithDefaults: function() {
+		
+		for (var prop in this._defaults) {
+			if (this._defaults.hasOwnProperty(prop) && typeof this._config[prop] === 'undefined') {
+				this._config[prop] = this._defaults[prop];
+			}
+		}
+
+	},
+
+	_errorHandling: function() {
+
+		// Add validation for 'color' type
+
+		for (var prop in this._config) {
+			if (this._config.hasOwnProperty(prop) && this._restrictions[prop]) {
+				//checking if this._restrictions[prop] is an array
+				if (typeof this._restrictions[prop] === 'object') {
+					if (this._restrictions[prop].indexOf(this._config[prop]) === -1) {
+						console.warn('Invalid value: (' + this._config[prop] +
+							') provided for ' + prop +
+							' property. Currently available options are: ' +
+							this._restrictions[prop]);
+
+						delete this._config[prop];
+					}
+				} else if (this._restrictions[prop] === 'number') {
+					if (typeof this._config[prop] !== 'number') {
+						console.warn('Invalid value: (' + this._config[prop] +
+							') provided for ' + prop +
+							' property. It should be a number.');
+						
+						delete this._config[prop];
+					}
+				}
+			}
+		}			
+
+	},
+
+	initConfig: function(config) {
+		this._config = config;
+				
+		this._errorHandling();
+
+		this._extendWithDefaults();
+
+		if (typeof this._customInit === 'function') {
+			this._customInit();
+		}
+
+	},
+
+	getConfigProperty: function(prop) {
+		if (this._config[prop]) {
+			return this._config[prop];
+		}
+		return;
+	}
+
+};
+
+</script>

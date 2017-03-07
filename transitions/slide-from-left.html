@@ -1,0 +1,64 @@
+<link rel="import" href="../../polymer/polymer.html">
+
+<link rel="import" href="../cat-transitions-behavior.html">
+
+<script>
+
+	Polymer({
+
+		is: 'slide-from-left',
+
+		behaviors: [CatBehaviors.CatTransitionsBehavior, CatBehaviors.CatAnimationRunnerBehavior],
+
+		properties: {
+			_defaults : {
+				value: {
+					function: 'ease',
+					duration: 1,
+					secondaryAnimation: true
+				}
+			},
+			_restrictions: {
+				value: {
+					function: ['ease', 'ease-in', 'ease-out', 'ease-in-out', 'linear'],
+					duration: 'number'					
+				}
+			}
+		},
+		
+		_customInit: function() {
+			
+			this.clearAnimation('tempAnimation');
+
+			var firstAnimation = this.addAnimation('tempAnimation', {
+			    name: 'cat-slide-animation',
+			    node: this._config.toNode,
+			    direction: 'left',
+			    function: this._config.function,
+			    duration: this._config.duration,
+			    reverse: false,
+			    done: function() {
+			    	this._config.done.call(this._config.self);
+			    }
+			});
+
+			if (this._config.secondaryAnimation) {
+
+				this.addAnimation('tempAnimation', {
+				    name: 'cat-slide-animation',
+				    node: this._config.fromNode,				    
+				    slide: 'out',
+				    direction: 'right',
+				    function: this._config.function,
+				    duration: this._config.duration,
+				    reverse: false
+				});
+			}
+
+			this.play('tempAnimation');
+		}
+		
+
+	});
+
+</script>

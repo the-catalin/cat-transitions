@@ -1,0 +1,35 @@
+{
+  "name": "cat-transitions",
+  "version": "0.7.0",
+  "description": "Helper element that allows you to add transitions to Polymer elements",
+  "authors": [
+    "Catalin Ungureanu <catalinungureanu@gmail.com>"
+  ],
+  "keywords": [
+    "web-components",
+    "polymer",
+    "transitions",
+    "fade",
+    "slide",
+    "scale"
+  ],
+  "main": "cat-transitions-runner-behavior.html",
+  "license": "MIT",
+  "homepage": "https://github.com/the-catalin/cat-transitions",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "^1.7.0"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.1.7",
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.2.5",
+    "web-component-tester": "^6.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
+  }
+}

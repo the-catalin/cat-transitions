@@ -1,0 +1,46 @@
+<link rel="import" href="../../polymer/polymer.html">
+
+<link rel="import" href="../cat-transitions-behavior.html">
+
+<script>
+
+	Polymer({
+
+		is: 'fade-in',
+
+		behaviors: [CatBehaviors.CatTransitionsBehavior, CatBehaviors.CatAnimationRunnerBehavior],
+
+		properties: {
+			_defaults : {
+				value: {
+					duration: 1
+				}
+			},
+			_restrictions: {
+				value: {
+					duration: 'number'					
+				}
+			}
+		},
+		
+		_customInit: function() {
+			
+			this.clearAnimation('tempAnimation');
+
+			var firstAnimation = this.addAnimation('tempAnimation', {
+			    name: 'cat-fade-animation',
+			    node: this._config.toNode,
+			    duration: this._config.duration,
+			    reverse: false,
+			    done: function() {
+			    	this._config.done.call(this._config.self);
+			    }
+			});
+
+			this.play('tempAnimation');
+		}
+		
+
+	});
+
+</script>
